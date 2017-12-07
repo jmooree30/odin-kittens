@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root 'kittnens#index'
+  root 'kittens#index'
   resources :kittens
 end

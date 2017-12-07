@@ -1,7 +1,7 @@
 class KittensController < ApplicationController
 
 	def index
-		@kittens = Kitten.all
+		@kitten = Kitten.all
 	end
 
 	def new 
@@ -10,14 +10,34 @@ class KittensController < ApplicationController
 
 	def create
 		@kitten = Kitten.new(kitten_params)
+		if @kitten.save
+			flash[:success]="Kitten created"
+			redirect_to root_path
+		else
+			flash[:error]="Error"
+			redirect_to root_path
+		end 
 	end 
 
 	def show
 		@kitten = Kitten.find(params[:id])
 	end 
 
-	def delete 
-		@kitten.destroy
+	def edit
+		@kitten = Kitten.find(params[:id])
+	end 
+
+	def update
+		@kitten = Kitten.find(params[:id])
+		if @kitten.update_attributes(kitten_params)
+			flash[:success]="Kitten updated!"
+		    redirect_to root_path
+		end 
+	end
+
+	def destroy
+		Kitten.find(params[:id]).destroy
+		redirect_to root_path
 	end 
 
 	private

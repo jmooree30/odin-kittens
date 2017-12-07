@@ -1,0 +1,8 @@
+<br><%= link_to "New kitten", new_kitten_path %><br> <br><br>
+
+<% @kitten.each do |f| %>
+<%= f.name %>
+<%= link_to 'View profile', kitten_path(id:f) %>
+<%= link_to 'Destroy', f, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit',edit_kitten_path(id:f) %><br>
+<% end %>
